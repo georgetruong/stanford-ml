@@ -112,7 +112,7 @@ plot(1:numel(J3), J3, '-b', 'LineWidth', 2, 'color', 'b'); hold on;
 % Add chart title, labels, and legend
 xlabel('Number of iterations');
 ylabel('Cost J');
-title('Cost vs # Iterations with various alpha values')
+title('Convergance of Cost(J) with different Learning Rates for Gradient Descent')
 legend('.1', '.01', '.001')
 
 hold off;
