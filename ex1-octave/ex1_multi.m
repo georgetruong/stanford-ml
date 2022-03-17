@@ -81,19 +81,41 @@ X = [ones(m, 1) X];
 
 fprintf('Running gradient descent ...\n');
 
-% Choose some alpha value
-alpha = 0.01;
+% Define number of iterations to run
 num_iters = 400;
 
-% Init Theta and Run Gradient Descent 
+figure;
+
+% Run Gradient Descent with alpha = 0.1
+alpha = 0.1;
 theta = zeros(3, 1);
 [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
+J1 = J_history;
 
-% Plot the convergence graph
-figure;
-plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
+% Run Gradient Descent with alpha = 0.01 and plot
+alpha = 0.01;
+theta = zeros(3, 1);
+[theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
+J2 = J_history;
+
+% Run Gradient Descent with alpha = 0.001 and plot
+alpha = 0.001;
+theta = zeros(3, 1);
+[theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
+J3 = J_history;
+
+% Plot graphs
+plot(1:numel(J1), J1, '-b', 'LineWidth', 2, 'color', 'r'); hold on;
+plot(1:numel(J2), J2, '-b', 'LineWidth', 2, 'color', 'g'); hold on;
+plot(1:numel(J3), J3, '-b', 'LineWidth', 2, 'color', 'b'); hold on;
+
+% Add chart title, labels, and legend
 xlabel('Number of iterations');
 ylabel('Cost J');
+title('Cost vs # Iterations with various alpha values')
+legend('.1', '.01', '.001')
+
+hold off;
 
 % Display gradient descent's result
 fprintf('Theta computed from gradient descent: \n');

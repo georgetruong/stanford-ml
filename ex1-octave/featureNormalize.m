@@ -24,15 +24,28 @@ sigma = zeros(1, size(X, 2));
 %               each feature. 
 %
 % Hint: You might find the 'mean' and 'std' functions useful.
-%       
+%      
 
+% Formatting for debugging
+% format short g;
+% output_precision(2);
 
+% Calculate dimensions of X
+m = size(X, 1);
+num_features = size(X, 2);
 
+% Calculate mean and standard deviation for each feature in X
+for j = 1:num_features
+    mu(1, j) = mean(X(:, j));       
+    sigma(1, j) = std(X(:, j));     
+end
 
-
-
-
-
+% Normalize data in X
+for i = 1:m
+    for j = 1:num_features
+        X_norm(i, j) = (X_norm(i, j) - mu(1, j)) / sigma(1, j);
+    end
+end
 
 % ============================================================
 

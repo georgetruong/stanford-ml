@@ -17,15 +17,16 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
+    h = X * theta;                  % Calculate h values
+    num_params = rows(theta);       % Find # of features
+    tmp = zeros(num_params, 1);     % Set a temp vector for storage
 
+    for j = 1:num_params
+        tmp(j) = theta(j) - (alpha / m) * sum((h - y) .* X(:, j));
+    end
 
-
-
-
-
-
-
-
+    % Simultaneously update all theta values
+    theta = tmp;
 
     % ============================================================
 

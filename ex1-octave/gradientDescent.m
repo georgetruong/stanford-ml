@@ -19,20 +19,19 @@ for iter = 1:num_iters
 
     h = X * theta;                  % Calculate h values
 
-
-    % Fixed solution with only 2 theta parameters
+    % Fixed solution with only 2 theta features
     %
     % theta_0 = theta(1) - (alpha / m) * sum((h - y) .* X(:, 1));
     % theta_1 = theta(2) - (alpha / m) * sum((h - y) .* X(:, 2));
     % theta = [theta_0; theta_1]; 
 
 
-    % Flexible solution with any number of theta parameters 
+    % Flexible solution with any number of theta features 
 
-    num_params = rows(theta);       % Find # of theta parameters
-    tmp = zeros(num_params, 1);     % Set a temp vector for storage
+    num_features = rows(theta);       % Find # of features  
+    tmp = zeros(num_features, 1);     % Set a temp vector for storage
 
-    for j = 1:num_params
+    for j = 1:num_features
         tmp(j) = theta(j) - (alpha / m) * sum((h - y) .* X(:, j));
     end
 
