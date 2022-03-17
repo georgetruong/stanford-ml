@@ -184,8 +184,10 @@ fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
-price = 0; % You should change this
 
+area = 1650; rooms = 3;             % Data used to predict price
+theta = normalEqn(X, y);            % Calculate theta using normal equation
+price = [1 area rooms] * theta;     % Calculate price
 
 % ============================================================
 
