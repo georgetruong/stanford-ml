@@ -126,8 +126,21 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-price = 0; % You should change this
 
+% Recalculate theta
+alpha = 0.1;
+theta = zeros(3, 1);
+[theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
+
+% Data used to predict price
+area = 1650; rooms = 3;
+
+% Normalize data based on previous calculations of mu and sigma on X
+area_norm = (area - mu(1)) / sigma(1);
+rooms_norm = (rooms - mu(2)) / sigma(2);
+
+% Calculate price
+price = [1 area_norm rooms_norm] * theta;
 
 % ============================================================
 
