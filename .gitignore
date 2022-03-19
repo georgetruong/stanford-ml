@@ -1,1 +1,4 @@
 **/token.mat
+**/.ipynb_checkpoints
+jupyterenv/
+env/
