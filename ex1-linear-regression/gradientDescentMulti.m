@@ -18,6 +18,8 @@ for iter = 1:num_iters
     %
 
     h = X * theta;                  % Calculate h values
+
+    # TODO: num_features doesn't need to be in loop
     num_params = rows(theta);       % Find # of features
     tmp = zeros(num_params, 1);     % Set a temp vector for storage
 
