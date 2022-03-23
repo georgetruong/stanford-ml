@@ -4,7 +4,8 @@ function [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters
 %   taking num_iters gradient steps with learning rate alpha
 
 % Initialize some useful values
-m = length(y); % number of training examples
+m = length(y);                      % number of training examples
+num_params = rows(theta);           % Find # of features
 J_history = zeros(num_iters, 1);
 
 for iter = 1:num_iters
@@ -18,9 +19,6 @@ for iter = 1:num_iters
     %
 
     h = X * theta;                  % Calculate h values
-
-    # TODO: num_features doesn't need to be in loop
-    num_params = rows(theta);       % Find # of features
     tmp = zeros(num_params, 1);     % Set a temp vector for storage
 
     for j = 1:num_params

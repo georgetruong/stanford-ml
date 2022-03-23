@@ -92,6 +92,8 @@ theta = zeros(3, 1);
 [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 J1 = J_history;
 
+theta01 = theta;
+
 % Run Gradient Descent with alpha = 0.01 and plot
 alpha = 0.01;
 theta = zeros(3, 1);
@@ -119,7 +121,7 @@ hold off;
 
 % Display gradient descent's result
 fprintf('Theta computed from gradient descent: \n');
-fprintf(' %f \n', theta);
+fprintf(' %f \n', theta01);
 fprintf('\n');
 
 % Estimate the price of a 1650 sq-ft, 3 br house
