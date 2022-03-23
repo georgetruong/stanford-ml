@@ -20,12 +20,19 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+% Formula from notes supposed to be theta' * X, but doesn't work(???). Get error:
+%       error: operator *: nonconformant arguments (op1 is 1x3, op2 is 100x3)
+#z = theta' * X;
 
+% Old formula for calculating works though
+z = X * theta;      
+h = sigmoid(z);
 
+J = 1 / m * sum( -y .* log(h) - (1 - y) .* log(1 - h));
 
-
-
-
+for i = 1:length(theta)
+    grad(i) = 1/m * sum((h - y) .* X(:, i));
+end
 
 % =============================================================
 
