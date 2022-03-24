@@ -128,6 +128,30 @@ ylabel('Microchip Test 2')
 legend('y = 1', 'y = 0', 'Decision boundary')
 hold off;
 
+% Plot decision boundary with lambda = 0
+lambda = 0;
+[theta, J, exit_flag] = ...
+	fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options);
+plotDecisionBoundary(theta, X, y);
+hold on;
+title(sprintf('No regularization (Overfitting) (lambda = %g)', lambda))
+xlabel('Microchip Test 1')
+ylabel('Microchip Test 2')
+legend('y = 1', 'y = 0', 'Decision boundary')
+hold off;
+
+% Plot decision boundary with lambda = 100
+lambda = 100;
+[theta, J, exit_flag] = ...
+	fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options);
+plotDecisionBoundary(theta, X, y);
+hold on;
+title(sprintf('Too much regularization (Underfitting) (lambda = %g)', lambda))
+xlabel('Microchip Test 1')
+ylabel('Microchip Test 2')
+legend('y = 1', 'y = 0', 'Decision boundary')
+hold off;
+
 % Compute accuracy on our training set
 p = predict(theta, X);
 
