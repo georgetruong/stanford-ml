@@ -21,13 +21,14 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+X = [ones(m, 1) X];             % Add ones to the X data matrix
 
+a2 = sigmoid(X * Theta1');      % Calculate a2
+a2 = [ones(m, 1) a2];           % Add ones to the a2 data matrix 
 
+a3 = sigmoid(a2 * Theta2');     % Calculate a3
 
-
-
-
-
+[flags, p] = max(a3, [], 2);    % Retrieve digit predictions
 
 % =========================================================================
 
