@@ -63,10 +63,10 @@ Theta2_grad = zeros(size(Theta2));
 %
 
 % Feedforward to calculate h
-a1 = [ones(m,1) X];
+a1 = [ones(m,1) X];  % Add ones column
 a2 = sigmoid(a1 * Theta1');
-a2 = [ones(m,1) a2];            % 5000x26
-h = sigmoid(a2 * Theta2');      % 5000x10
+a2 = [ones(m,1) a2]; % Add ones column
+h = sigmoid(a2 * Theta2');      
 
 % Recode y labels as vectors
 y_vec = zeros(m, num_labels);
@@ -74,11 +74,17 @@ for i = 1:m
     y_vec(i, y(i)) = 1;
 end
 
-% Calculate cost and regularization
+% Calculate cost 
 cost = 1/m * sum(sum(-y_vec.*log(h) - (1-y_vec).*log(1-h)));
-t1 = Theta1; t1(:,1) = 0;   % Ignore bias for regularization
-t2 = Theta2; t2(:,1) = 0;   % Ignore bias for regularization
+
+% Copy Theta1 / Theta2 and ignore bias for regularization
+t1 = Theta1; t1(:,1) = 0;   
+t2 = Theta2; t2(:,1) = 0;   
+
+% Calculate regularization
 cost_reg = lambda/(2*m) * (sum(sum(t1.^2)) + sum(sum(t2.^2)));
+
+% Calculate regularized cost function
 J = cost + cost_reg;
 
 % -------------------------------------------------------------
