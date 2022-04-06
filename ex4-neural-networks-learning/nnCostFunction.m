@@ -74,10 +74,12 @@ for i = 1:m
     y_vec(i, y(i)) = 1;
 end
 
-% Calculate cost
-cost = 1/m * sum(sum(-y_vec.*log(h) - (1-y_vec).*log(1-h)))
-cost_reg = 0 % TODO
-J = cost + cost_reg
+% Calculate cost and regularization
+cost = 1/m * sum(sum(-y_vec.*log(h) - (1-y_vec).*log(1-h)));
+t1 = Theta1; t1(:,1) = 0;   % Ignore bias for regularization
+t2 = Theta2; t2(:,1) = 0;   % Ignore bias for regularization
+cost_reg = lambda/(2*m) * (sum(sum(t1.^2)) + sum(sum(t2.^2)));
+J = cost + cost_reg;
 
 % -------------------------------------------------------------
 
