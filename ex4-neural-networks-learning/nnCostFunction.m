@@ -62,23 +62,22 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Feedforward to calculate h
+a1 = [ones(m,1) X];
+a2 = sigmoid(a1 * Theta1');
+a2 = [ones(m,1) a2];            % 5000x26
+h = sigmoid(a2 * Theta2');      % 5000x10
 
+% Recode y labels as vectors
+y_vec = zeros(m, num_labels);
+for i = 1:m
+    y_vec(i, y(i)) = 1;
+end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% Calculate cost
+cost = 1/m * sum(sum(-y_vec.*log(h) - (1-y_vec).*log(1-h)))
+cost_reg = 0 % TODO
+J = cost + cost_reg
 
 % -------------------------------------------------------------
 
