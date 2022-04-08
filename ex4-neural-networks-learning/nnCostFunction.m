@@ -87,6 +87,31 @@ cost_reg = lambda/(2*m) * (sum(sum(t1.^2)) + sum(sum(t2.^2)));
 % Calculate regularized cost function
 J = cost + cost_reg;
 
+% Backpropagation to calculate gradients
+for t = 1:m
+    a1 = X(t,:); 
+    a1 = [1 a1];        % Extract X_t and add bias column
+
+    z2 = a1*Theta1';
+    a2 = sigmoid(z2); 
+    a2 = [1 a2];        % Calculate a2 and add bias column
+
+    z3 = a2*Theta2';
+    h = sigmoid(z3);
+    
+    d3 = h - y_vec(t,:);
+
+    d2 = (d3*Theta2) .* (a2.*(1-a2)); 
+    d2 = d2(:, 2:end); % Drop bias gradient
+
+    Theta2_grad = Theta2_grad + (d3'*a2);
+    Theta1_grad = Theta1_grad + (d2'*a1);
+end
+
+% Average gradients and adjust for regularization
+Theta2_grad = ((1/m) * Theta2_grad) + ((lambda/m) * t2);
+Theta1_grad = ((1/m) * Theta1_grad) + ((lambda/m) * t1);
+
 % -------------------------------------------------------------
 
 % =========================================================================
