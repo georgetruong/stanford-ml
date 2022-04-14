@@ -40,13 +40,18 @@ error_val = zeros(length(lambda_vec), 1);
 %
 
 for i = 1:length(lambda_vec)
+    % NOTE: lambda only used for training
     lambda = lambda_vec(i);
+
+    % Calculate theta
     theta = trainLinearReg(X, y, lambda);
 
-    [J_train, grad_train] = linearRegCostFunction(X, y, theta, lambda);
+    % Calculate training error
+    [J_train, grad_train] = linearRegCostFunction(X, y, theta, 0);
     error_train(i) = J_train;
 
-    [J_val, grad_val] = linearRegCostFunction(Xval, yval, theta, lambda);
+    % Calculate cross validation error
+    [J_val, grad_val] = linearRegCostFunction(Xval, yval, theta, 0);
     error_val(i) = J_val;
 end
 
