@@ -21,11 +21,18 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+for n = 1:size(X,1)
+    dist = zeros(K, 1);
+    for i = 1:K
+        dist(i) =   sqrt(
+                        (X(n,1) - centroids(i,1))^2 +   % Xs 
+                        (X(n,2) - centroids(i,2))^2     % Ys
+                    );
+    end
 
-
-
-
-
+    [value, cluster] = min(dist);
+    idx(n) = cluster;
+end
 
 % =============================================================
 
