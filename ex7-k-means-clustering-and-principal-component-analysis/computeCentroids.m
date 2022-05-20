@@ -26,11 +26,13 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
+for i = 1:K
+    cluster = find(idx == i);
+    c_size = numel(cluster);
 
-
-
-
-
+    centroids(i, 1) = sum(X(cluster, 1)) / c_size;
+    centroids(i, 2) = sum(X(cluster, 2)) / c_size;
+end
 
 
 % =============================================================
